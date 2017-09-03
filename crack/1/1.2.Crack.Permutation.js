@@ -2,17 +2,20 @@
 function crackPermutation(str1, str2) {
   if (str1.length !== str2.length) return false
 
+  let flags = new Array()
+  for (let i = 0; i < 128; i++) {
+    flags.push(0)
+  }
   for (let i = 0; i < str1.length; i++) {
-    let remain = str1.slice(0, i) + str1.slice(i + 1)
-    let variable = str1[i]
-
-    for (let j = 0; j < remain.length; i++) {
-      let assembled = remain.slice(0, j) + variable + remain.slice(j)
-      if (assembled === str2) {
-        return true
-      }
+    flags[str1.charCodeAt(i)]++
+  }
+  for (let i = 0; i < str2.length; i++) {
+    flags[str2.charCodeAt(i)]--
+    if (flags[str2.charCodeAt(i)] < 0) {
+      return false
     }
   }
+  return true
 }
 
 function crackPermutation2(str1, str2) {
@@ -22,14 +25,25 @@ function crackPermutation2(str1, str2) {
   return sort(str1) === sort(str2)
 }
 
+function crackPermutation3(str1, str2) {
+  
+}
+
 var should = require('chai').should()
 var _ = require('lodash')
-let source = _.range(10000)
+let source = _.range(1000)
 let shuffled = _.shuffle(source)
+
 crackPermutation('12c4', '4c21').should.equal(true)
 crackPermutation('1234', '432x').should.equal(false)
+var t1 = Date.now()
 crackPermutation(source.join(''), shuffled.join('')).should.equal(true)
+var t2 = Date.now()
+console.log(`time used: ${t2 - t1} ms`)
 
 crackPermutation2('12c4', '4c21').should.equal(true)
 crackPermutation2('1234', '432x').should.equal(false)
+var t1 = Date.now()
 crackPermutation2(source.join(''), shuffled.join('')).should.equal(true)
+var t2 = Date.now()
+console.log(`time used: ${t2 - t1} ms`)
