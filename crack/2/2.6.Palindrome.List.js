@@ -14,7 +14,11 @@ function palindromeList(list) {
     j--
   }
   return true
-}
+} // T: O(N), S: O(N)
+
+// Reverse approch T: O(N), S: O(N)
+// Stack approch T: O(N), S: O(N)
+// Recursive T: O(N^2), S: O(1)?
 
 const should = require('chai').should()
 let fromArray = require('./Utils').fromArray
