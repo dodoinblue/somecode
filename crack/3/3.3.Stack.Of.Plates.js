@@ -6,12 +6,12 @@ function SetOfStacks(limit) {
 }
 
 SetOfStacks.prototype.getCurrent = function() {
-  return this.map.get(map.size - 1)
+  return this.map.get(this.map.size - 1)
 }
 
 SetOfStacks.prototype.push = function(obj) {
-  if (this.getCurrent().length = limit) {
-    this.map.set(map.size, [obj])
+  if (this.getCurrent().length === this.limit) {
+    this.map.set(this.map.size, [obj])
   } else {
     this.getCurrent().push(obj)
   }
@@ -20,7 +20,7 @@ SetOfStacks.prototype.push = function(obj) {
 SetOfStacks.prototype.pop = function() {
   let popped = this.getCurrent().pop()
   if (this.getCurrent().length === 0) {
-    this.map.delete(this.map.size)
+    this.map.delete(this.map.size - 1)
   }
   return popped
 }
