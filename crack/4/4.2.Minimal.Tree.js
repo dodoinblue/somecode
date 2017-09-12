@@ -38,3 +38,5 @@ root2.left.right.data.should.equal(3)
 root2.right.data.should.equal(6)
 root2.right.left.data.should.equal(5)
 should.equal(typeof root2.right.right, 'undefined')
+
+module.exports = generateBST
